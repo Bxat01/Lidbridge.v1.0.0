@@ -1,0 +1,52 @@
+[package]
+name = "lidbridge"
+version = "1.0.0"
+description = "Desktop app to clean local projects and push to GitHub"
+authors = ["Lidprex Labs"]
+edition = "2021"
+
+[lib]
+name = "lidbridge_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+winresource = "0.1"
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+rusqlite = { version = "0.31", features = ["bundled"] }
+git2 = { version = "0.19", features = ["vendored-libgit2"] }
+reqwest = { version = "0.12", features = ["json", "blocking"] }
+base64 = "0.22"
+sha2 = "0.10"
+aes-gcm = "0.10"
+rand = "0.8"
+hex = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+log = "0.4"
+env_logger = "0.11"
+thiserror = "1"
+dirs = "5"
+open = "5"
+sqlx = { version = "0.8", features = ["runtime-tokio-native-tls", "postgres", "chrono"] }
+dotenv = "0.15"
+walkdir = "2"
+rayon = "1.10"
+uuid = { version = "1", features = ["v4"] }
+jsonwebtoken = "9"
+regex = "1.10"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[package.metadata.windows]
+subsystem = "windows"
